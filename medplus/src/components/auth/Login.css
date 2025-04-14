@@ -1,0 +1,137 @@
+/* Main Container */
+.login-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: linear-gradient(135deg, #f0f7ff, #e1effe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden; 
+  position: fixed; 
+}
+
+
+/* Form Card */
+.login-card {
+    width: 100%;
+    max-width: 28rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    
+}
+
+/* Card Header */
+.card-header {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    padding: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.logo-circle {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1rem;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form Content */
+.card-body {
+    padding: 2rem;
+    
+}
+
+/* Form Tabs */
+.form-tabs {
+    display: flex;
+    border-bottom: 1px ;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 500;
+    color: white;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+}
+
+/* Form Inputs */
+.input-group {
+    position: relative;
+    margin-bottom: 1.25rem;
+    width: 100%;
+    display: flex;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Submit Button */
+.btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Footer Links */
+.card-footer {
+    padding: 1.5rem;
+    background: #f9fafb;
+    text-align: center;
+}
+
+.footer-link {
+    color: #6b7280;
+    font-size: 0.75rem;
+    margin: 0 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .card-header, .card-body {
+        padding: 1.5rem;
+    }
+}

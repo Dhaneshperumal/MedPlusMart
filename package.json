@@ -1,0 +1,23 @@
+{
+  "name": "medplusmart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dhaneshperumal/MedPlusMart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dhaneshperumal/MedPlusMart/issues"
+  },
+  "homepage": "https://github.com/Dhaneshperumal/MedPlusMart#readme",
+  "dependencies": {
+    "react-icons": "^5.5.0"
+  }
+}
