@@ -1,106 +1,199 @@
-/* Main Container */
+/* Base Styles */
 .login-container {
-  min-height: 100vh;
-  min-width: 100vw;
-  background: linear-gradient(135deg, #f0f7ff, #e1effe);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  overflow: hidden; 
-  position: fixed; 
-}
-
-
-/* Form Card */
-.login-card {
-    width: 100%;
-    max-width: 28rem;
-    background: white;
-    border-radius: 1rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    
-}
-
-/* Card Header */
-.card-header {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    padding: 2rem;
-    text-align: center;
-    color: white;
-}
-
-.logo-circle {
-    width: 3.5rem;
-    height: 3.5rem;
-    margin: 0 auto 1rem;
-    background: white;
-    border-radius: 50%;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* Form Content */
-.card-body {
-    padding: 2rem;
-    
-}
-
-/* Form Tabs */
-.form-tabs {
+    padding: 1rem;
+    background: linear-gradient(135deg, #f0f7ff, #e1effe);
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 26rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin: 1rem;
+  }
+  
+  /* Header Styles */
+  .card-header {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .logo-container {
     display: flex;
-    border-bottom: 1px ;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .logo-icon {
+    font-size: 2rem;
+  }
+  
+  .welcome-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .welcome-subtitle {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin: 0;
+  }
+  
+  /* Form Styles */
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .form-tabs {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
     margin-bottom: 1.5rem;
-}
-
-.tab-btn {
+  }
+  
+  .tab-btn {
     flex: 1;
     padding: 0.75rem;
-    text-align: center;
-    font-weight: 500;
-    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
     border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-}
-
-.tab-btn.active {
+    color: #6b7280;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .tab-btn.active {
     color: #3b82f6;
     border-bottom-color: #3b82f6;
-}
-
-/* Form Inputs */
-.input-group {
+  }
+  
+  .tab-icon {
+    font-size: 1.1rem;
+  }
+  
+  .tab-text {
+    font-size: 0.875rem;
+  }
+  
+  /* Input Groups */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .input-group .form-control {
+    padding-right: 6rem; /* prevents overlap with Send OTP */
+  }
+  
+  
+  .input-group {
     position: relative;
-    margin-bottom: 1.25rem;
-    width: 100%;
-    display: flex;
-}
-
-.input-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .input-icon {
     position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+  
+        top: 60%;
+        transform: translateY(-50%);
+        line-height: 1;
+    
+      
     color: #9ca3af;
-}
-
-.form-control {
+    font-size: 1rem;
+  }
+  
+  .form-control {
     width: 100%;
     padding: 0.75rem 1rem 0.75rem 2.5rem;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
+    font-size: 0.875rem;
     transition: all 0.2s;
-}
-
-.form-control:focus {
+    background-color: white;
+  }
+  
+  .form-control:focus {
+    outline: none;
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-/* Submit Button */
-.btn-primary {
+  }
+  
+  /* Remember Me & Forgot Password */
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    margin: 1rem 0;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .remember-checkbox {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #3b82f6;
+  }
+  
+  .forgot-password {
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* OTP Specific Styles */
+  .otp-group {
+    position: relative;
+  }
+  
+  .otp-button {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #e0e7ff;
+    color: #3b82f6;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .otp-button:hover:not(:disabled) {
+    background: #dbeafe;
+  }
+  
+  .otp-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Button Styles */
+  .btn-primary {
     width: 100%;
     padding: 0.75rem;
     background: linear-gradient(135deg, #3b82f6, #2563eb);
@@ -108,30 +201,128 @@
     border: none;
     border-radius: 0.5rem;
     font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
     transition: all 0.2s;
-}
-
-.btn-primary:hover {
+  }
+  
+  .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
-}
-
-/* Footer Links */
-.card-footer {
-    padding: 1.5rem;
-    background: #f9fafb;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+  
+  /* Footer Links */
+  .auth-footer {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+  }
+  .footer-links{
     text-align: center;
-}
-
-.footer-link {
-    color: #6b7280;
+  }
+  .auth-footer a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  
+  .auth-footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .legal-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
     font-size: 0.75rem;
-    margin: 0 0.5rem;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-    .card-header, .card-body {
-        padding: 1.5rem;
+  }
+  
+  .legal-links a {
+    color: #6b7280;
+    text-decoration: none;
+  }
+  
+  .legal-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .legal-links span {
+    color: #d1d5db;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 425px) {
+    .login-card {
+      margin: 0.5rem;
+      border-radius: 0.75rem;
     }
+  
+    .card-header {
+      padding: 1.25rem 1rem;
+    }
+  
+    .logo-container {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .welcome-title {
+      font-size: 1.1rem;
+    }
+  
+    .tab-text {
+      display: none;
+    }
+  
+    .tab-btn {
+      padding: 0.75rem 0.5rem;
+    }
+  
+    .tab-icon {
+      margin-right: 0;
+      font-size: 1.2rem;
+    }
+  
+    .form-control {
+      padding-left: 2.25rem;
+      font-size: 0.8125rem;
+    }
+  
+    .input-icon {
+      left: 0.75rem;
+    }
+  
+    .remember-forgot {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  
+    .auth-footer p {
+      font-size: 0.8125rem;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .card-body {
+      padding: 1.25rem;
+    }
+  
+    .otp-button {
+      font-size: 0.6875rem;
+      padding: 0.2rem 0.4rem;
+    }
+  }
+  @media (max-width: 400px) {
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-group button {
+    position: static;
+    transform: none;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
 }

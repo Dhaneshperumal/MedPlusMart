@@ -1,10 +1,12 @@
 import { useState } from 'react';
 //import { login } from '../../services/auth';
-import { Link } from 'react-router-dom';
 import { FaUser, FaLock, FaMobileAlt, FaEnvelope } from 'react-icons/fa';
 import { MdOutlineSms } from 'react-icons/md';
 import { MdHealthAndSafety } from 'react-icons/md';
 import "./Login.css"
+import { Link } from 'react-router-dom';
+import Header from '../Header';
+import Footer from '../Footer';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +20,7 @@ const Login = () => {
   const handleSendOtp = () => {
     if (!mobile) return;
     
-    // Simulate OTP sending
+   
     console.log('OTP sent to:', mobile);
     setIsOtpSent(true);
     setCountdown(30);
@@ -42,18 +44,20 @@ const Login = () => {
       window.location.href = '/';
     } catch (error) {
       console.error('Login error:', error);
-      // Show error message to user
+    
       alert(error.message || 'Login failed. Please try again.');
     }
   };
 
   return (
+    <>
+    <Header/>
     <div className="login-container">
       <div className="login-card">
-        {/* Header with Logo */}
+      
         <div className="card-header">
       <div className="icons-container">
-        {/* <FaUser className="text-white text-xl" /> */} 
+       
          <MdHealthAndSafety style={{ color: 'white', fontSize: '35px' }} className="category-icons" /> 
       </div>
       <h1 className="text-xl font-bold">Welcome to MedPlusMart</h1>
@@ -61,26 +65,26 @@ const Login = () => {
     </div>
 
         <div className="card-body">
-          {/* Toggle between Email/Password and OTP Login */}
+        
           <div className="form-tabs">
             <button
               onClick={() => setIsOtpLogin(false)}
               className={`tab-btn ${!isOtpLogin ? 'active' : ''}`}
             >
               <FaEnvelope className="inline mr-2" />
-              {/* Email Login */}
+            
             </button>
             <button
               onClick={() => setIsOtpLogin(true)}
               className={`tab-btn ${isOtpLogin ? 'active' : ''}`}
             >
               <MdOutlineSms className="inline mr-2" />
-              {/* OTP Login */}
+              
             </button>
           </div>
 
           {!isOtpLogin ? (
-            // Email/Password Login Form
+           
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-3">
                 <div className="input-group">
@@ -92,7 +96,7 @@ const Login = () => {
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@company.com"
+                    placeholder="••••••••@gmail.com"
                     required
                     className="form-control"
                   />
@@ -127,7 +131,7 @@ const Login = () => {
                     </label>
 
                   </div>
-                  <Link to="/forgotpassword" style={{ color: 'blue' }} className="text-sm hover:underline">
+                  <Link to="/forgotpassword" style={{ color: 'blue' }} className="text-sm  hover:underline">
                     Forgot password?
                   </Link>
 
@@ -201,7 +205,7 @@ const Login = () => {
 
           <div className="text-center">
             <p className="text-sm text-gray-600">
-              New to MedPlusMart?{' '}
+             <span style={{color:'black'}}> New to MedPlusMart?</span>{' '}
               <a href="/register" style={{ color: 'blue' }} className="text-sm hover:underline">
                 New User? Register Now
               </a>
@@ -213,11 +217,13 @@ const Login = () => {
         <div className="card-footer">
           <div className="footer-links">
             <a href="#" className="footer-link">Terms of Service</a>
-            <a href="#" className="footer-link">Privacy Policy</a>
+            <a href="#" className="footer-link"> Privacy Policy</a>
           </div>
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

@@ -1,122 +1,281 @@
+/* Profile Page Styles */
 .profile-container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  box-sizing: border-box;
 }
 
-.profile-container h1 {
-  color: #2563eb;
+.profile-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.profile-section {
-  margin-bottom: 1.5rem;
-  display: flex;
-}
-
-.profile-section label {
-  display: block;
+.profile-title {
+  color: #1e293b;
+  font-size: 1.75rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
 }
 
-.profile-section input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.profile-subtitle {
+  color: #64748b;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  font-weight: 400;
 }
 
-.profile-section input:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.profile-preview {
-  display: block;
-  max-width: 150px;
-  max-height: 150px;
-  margin-top: 1rem;
+/* Profile Picture Section */
+.profile-picture-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  border: 4px solid #e2e8f0;
+  transition: all 0.3s ease;
 }
 
-.profile-buttons {
+.profile-avatar:hover {
+  border-color: #93c5fd;
+}
+
+.profile-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #e2e8f0;
+}
+
+.avatar-text {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.picture-upload {
+  position: relative;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #f8fafc;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upload-label:hover {
+  background: #eff6ff;
+}
+
+.upload-input {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Form Styles */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.form-input {
+  padding: 0.875rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1e293b;
+  transition: all 0.2s;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.3);
+}
+
+/* Success Message */
+.success-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  background: #ecfdf5;
+  color: #065f46;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.success-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Buttons */
+.form-actions {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  width: 100%;
 }
 
-.profile-buttons button {
+.btn {
   flex: 1;
-  padding: 0.75rem;
+  padding: 0.875rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.profile-buttons button:first-child {
-  background-color: #2563eb;
+.btn-save {
+  background: #2563eb;
   color: white;
 }
 
-.profile-buttons button:first-child:hover {
-  background-color: #1d4ed8;
+.btn-save:hover {
+  background: #1d4ed8;
 }
 
-.profile-buttons button:last-child {
-  background-color: #f8fafc;
-  color: #333;
-  border: 1px solid #ddd;
+.btn-cancel {
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
 }
 
-.profile-buttons button:last-child:hover {
-  background-color: #e2e8f0;
+.btn-cancel:hover {
+  background: #f1f5f9;
 }
 
-.success-message {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background-color: #d1fae5;
-  color: #065f46;
-  border-radius: 4px;
-  text-align: center;
+.btn-logout {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
 
-.footer {
-  margin-top: 2rem;
-  text-align: center;
+.btn-logout:hover {
+  background: #fee2e2;
 }
 
-.footer a {
-  color: #2563eb;
+/* Footer */
+.profile-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.footer-link {
+  color: #64748b;
+  font-size: 0.875rem;
   text-decoration: none;
-  margin: 0 0.5rem;
+  transition: color 0.2s;
 }
 
-.footer a:hover {
-  text-decoration: underline;
+.footer-link:hover {
+  color: #2563eb;
 }
 
+.footer-separator {
+  color: #cbd5e1;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .profile-container {
     margin: 1rem;
     padding: 1.5rem;
   }
-  
-  .profile-buttons {
+
+  .profile-title {
+    font-size: 1.5rem;
+  }
+
+  .form-actions {
     flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 1.25rem;
+    margin: 0.5rem;
+  }
+
+  .profile-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .avatar-container {
+    width: 100px;
+    height: 100px;
   }
 }
