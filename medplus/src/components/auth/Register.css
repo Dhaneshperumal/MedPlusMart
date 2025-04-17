@@ -46,6 +46,9 @@
   flex-direction: column;
   gap: 0.25rem; /* Keep this for spacing between input and error message */
   margin-bottom: 0; /* Remove bottom margin */
+  
+  
+  
 }
 
 /* Input Styles */
@@ -53,6 +56,8 @@
   position: relative;
   display: flex;
   align-items: center;
+  
+  
 }
 
 .input-icon {
@@ -60,6 +65,8 @@
   left: 1rem;
   color: #94a3b8;
   font-size: 1rem;
+  
+  
 }
 
 .form-input {
@@ -69,12 +76,15 @@
   border-radius: 0.5rem;
   font-size: 0.9rem;
   transition: all 0.2s;
+  
+  
 }
 
 .form-input:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  
 }
 
 .input-error {
