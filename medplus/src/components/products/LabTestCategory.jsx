@@ -1,6 +1,8 @@
 import React from 'react';
 import { MdMedicalServices } from 'react-icons/md';
 import '../products/Category.css';
+import Header from '../Header';
+import Footer from '../Footer';
 
 const LabTestCategory = () => {
   const tests = [
@@ -13,6 +15,8 @@ const LabTestCategory = () => {
   ];
 
   return (
+    <>
+    <Header/>
     <div className="category-container">
       <div className="category-header">
         <MdMedicalServices className="category-main-icon" />
@@ -36,6 +40,8 @@ const LabTestCategory = () => {
         ))}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

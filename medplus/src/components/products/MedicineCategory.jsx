@@ -1,6 +1,8 @@
 import React from 'react';
 import { GiMedicinePills } from 'react-icons/gi';
 import '../products/Category.css';
+import Header from '../Header';
+import Footer from '../Footer';
 
 const MedicineCategory = () => {
   const medicines = [
@@ -13,6 +15,8 @@ const MedicineCategory = () => {
   ];
 
   return (
+    <>
+    <Header/>
     <div className="category-container">
       <div className="category-header">
         <GiMedicinePills className="category-main-icon" />
@@ -32,6 +36,8 @@ const MedicineCategory = () => {
         ))}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

@@ -12,6 +12,7 @@ import MedicineCategory from './components/products/MedicineCategory';
 import LabTestCategory from './components/products/LabTestCategory';
 import PersonalCareCategory from './components/products/PersonalCareCategory';
 import WellnessCategory from './components/products/WellnessCategory ';
+import PharmacistDashboard from './components/pages/PharmacistDashboard';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -48,7 +49,7 @@ function App() {
         <Route path="/labtest" element={<LabTestCategory />} />
         <Route path="/personalcare" element={<PersonalCareCategory />} />
         <Route path="/wellness" element={<WellnessCategory />} />
-      
+        <Route path="/Pharmacist" element={<PharmacistDashboard />} />
       </Routes>
     </Router>
    
