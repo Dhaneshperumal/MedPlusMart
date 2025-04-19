@@ -1,5 +1,5 @@
 import React from 'react';
-import { GiMedicinePills } from 'react-icons/gi';
+import { MdLocalPharmacy} from 'react-icons/md';
 import '../products/Category.css';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -19,7 +19,8 @@ const MedicineCategory = () => {
     <Header/>
     <div className="category-container">
       <div className="category-header">
-        <GiMedicinePills className="category-main-icon" />
+        {/* <GiMedicinePills className="category-main-icon" /> */}
+        <MdLocalPharmacy className="category-main-icon" />
         <h2>Medicines</h2>
       </div>
       <div className="subcategory-grid">

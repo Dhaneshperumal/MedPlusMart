@@ -32,7 +32,7 @@ const PersonalCareCategory = () => {
               ))}
             </ul>
             <div className="brands">
-              <span>Popular Brands:</span>
+              <span style={{color:'black'}}>Popular Brands:</span>
               <div className="brand-tags">
                 <span style={{color:'black'}}>Dove</span>
                 <span style={{color:'black'}}>Himalaya</span>

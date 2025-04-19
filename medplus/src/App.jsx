@@ -14,6 +14,10 @@ import PersonalCareCategory from './components/products/PersonalCareCategory';
 import WellnessCategory from './components/products/WellnessCategory ';
 import PharmacistDashboard from './components/pages/PharmacistDashboard';
 
+import AdminLogin from './components/auth/Admin_login';
+import Pharmacist_login from './components/auth/Pharmacist_login';
+import AdminForgot from './components/auth/AdminForgot';
+import PharmacistForgot from './components/auth/PharmacistForgot';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const userData = localStorage.getItem('user') || sessionStorage.getItem('user');
@@ -50,6 +54,11 @@ function App() {
         <Route path="/personalcare" element={<PersonalCareCategory />} />
         <Route path="/wellness" element={<WellnessCategory />} />
         <Route path="/Pharmacist" element={<PharmacistDashboard />} />
+        <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/pharmacistlogin" element={<Pharmacist_login />} />
+        <Route path="/adminforgot" element={<AdminForgot />} />
+        <Route path="/pharmacistforgot" element={<PharmacistForgot />} />
+      
       </Routes>
     </Router>
    

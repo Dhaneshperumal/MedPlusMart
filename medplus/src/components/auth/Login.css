@@ -94,7 +94,7 @@
     margin-bottom: 1.5rem;
   }
   .input-group .form-control {
-    padding-right: 6rem; /* prevents overlap with Send OTP */
+    padding-left: 40px;
   }
   
   
@@ -105,8 +105,8 @@
   
   .input-icon {
     position: absolute;
-  
-        top: 60%;
+
+        top: 50%;
         transform: translateY(-50%);
         line-height: 1;
     
