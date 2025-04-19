@@ -166,7 +166,7 @@ useEffect(() => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <button type="submit" className="search-button">
-                  <MdSearch className="search-icon" />
+                <MdSearch className="searchicon" />
                 </button>
               </form>
             </div>

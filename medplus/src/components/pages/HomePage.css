@@ -47,7 +47,7 @@ main {
   align-items: center;
 }
 
-.search-icon {
+.searchicon {
   font-size: 1.5rem;
 }
 
@@ -63,8 +63,7 @@ main {
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-              url('https://via.placeholder.com/1400x600?text=Health+Care') center/cover no-repeat;
+  background-color: #1e293b;
   height: 600px;
   display: flex;
   align-items: center;

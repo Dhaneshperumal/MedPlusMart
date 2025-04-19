@@ -125,7 +125,7 @@ const PharmacistDashboard = () => {
       {isMobileView && (
         <header className="mobile-header">
           <Container fluid>
-            <Row className="align-items-center g-0">
+            <Row className="align -items-center g-0">
               <Col className="text-center">
                 <h1 className="app-title">MedPlusMart</h1>
               </Col>
@@ -217,7 +217,7 @@ const Sidebar = ({ activeTab, setActiveTab, stats }) => (
       <div className="user-info">
         <PersonCircle size={28} className="me-2" />
         <div>
-          <div className="user-name">Dr. Sarah Johnson</div>
+          <div className="user-name">Dr. Sarah</div>
           <div className="user-role">Pharmacist</div>
         </div>
       </div>
@@ -273,7 +273,7 @@ const MobileMenu = ({ show, onHide, activeTab, setActiveTab, stats }) => (
         />
         <NavItem 
           icon={<Capsule />} 
-          title="Inventory" 
+          title ="Inventory" 
           active={activeTab === 'inventory'} 
           onClick={() => { setActiveTab('inventory'); onHide(); }} 
           badge={stats.lowStockItems}
@@ -406,27 +406,27 @@ const PrescriptionSection = ({ prescriptions, stats }) => (
 const PrescriptionListItem = ({ item, status }) => (
   <ListGroup.Item className="prescription-item">
     <Row className="align-items-center g-2">
-      <Col xs="auto">
-        {status === 'pending' ? (
-          <Clock className="text-warning" size={20} />
-        ) : (
-          <CheckCircle className="text-success" size={20} />
-        )}
-      </Col>
-      <Col>
-        <div>
-          <strong>{item.medicine}</strong>
-          <div className="text-muted small">{item.patient} • RX: {item.rxNumber}</div>
-        </div>
-      </Col>
-      <Col xs="auto">
-        {status === 'pending' ? (
-          <Button variant="outline-primary" size="sm">Review</Button>
-        ) : (
-          <Badge bg="success">Approved</Badge>
-        )}
-      </Col>
-    </Row>
+  <Col xs="auto">
+    {status === 'pending' ? (
+      <Clock className="text-warning" size={20} />
+    ) : (
+      <CheckCircle className="text-success" size={20} />  
+    )}
+  </Col>
+  <Col>
+    <div>
+      <strong>{item.medicine}</strong>
+      <div className="text-muted small">{item.patient} • RX: {item.rxNumber}</div>
+    </div>
+  </Col>
+  <Col xs="auto">
+    {status === 'pending' ? (
+      <Button variant="outline-primary" size="sm">Review</Button>
+    ) : (
+      <Badge bg="success">Approved</Badge>
+    )}
+  </Col>
+</Row>
   </ListGroup.Item>
 );
 
@@ -550,7 +550,7 @@ const EmptyState = ({ message, variant = 'secondary' }) => (
       {variant === 'success' ? (
         <CheckCircle size={24} />
       ) : (
-        <ExclamationTriangle size={24} />
+        <ExclamationTriangle size={ 24} />
       )}
     </div>
     <p className="text-muted">{message}</p>
