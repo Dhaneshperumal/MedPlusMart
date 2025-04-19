@@ -95,6 +95,7 @@
   }
   .input-group .form-control {
     padding-left: 40px;
+    color: black;
   }
   
   
@@ -317,6 +318,7 @@
   .input-group {
     flex-direction: column;
     align-items: stretch;
+    
   }
 
   .input-group button {

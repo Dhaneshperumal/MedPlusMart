@@ -13,7 +13,7 @@ const LabTestCategory = () => {
   ];
 
   return (
-    <div className="category-container">
+    <div className="category-container labtest-category">
       <div className="category-header">
         <MdMedicalServices className="category-main-icon" />
         <h2>Lab Tests</h2>

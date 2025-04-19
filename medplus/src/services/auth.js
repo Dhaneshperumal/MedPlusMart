@@ -48,6 +48,7 @@ export const login = async (credentials) => {
 
 export const logout = () => {
   localStorage.removeItem('user');
+  localStorage.removeItem('currentUserEmail');
   sessionStorage.removeItem('user');
   window.location.href = '/login';
 };

@@ -1,8 +1,13 @@
 /* Base Styles */
+.medicine-category, .labtest-category, .wellness-category, .personalcare-category { 
+  background: url('/src/asset/medicine-offer.jpg') no-repeat center center/cover;
+}
+
 .category-container {
     padding: 2rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto;  
+    
   }
   
   .category-header {
@@ -10,16 +15,20 @@
     align-items: center;
     margin-bottom: 2rem;
     color: #2a7fba;
+    background-color: #2a7fba; ;
+    border-radius: 10px;
   }
   
   .category-main-icon {
     font-size: 2.5rem;
     margin-right: 1rem;
+    color: white;
   }
   
   .category-header h2 {
     font-size: 2rem;
     margin: 0;
+    color: white;
   }
   
   .subcategory-grid {

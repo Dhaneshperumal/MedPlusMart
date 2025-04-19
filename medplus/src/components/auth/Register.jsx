@@ -11,9 +11,6 @@ const Register = () => {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [otp, setOtp] = useState('');
-  const [isOtpSent, setIsOtpSent] = useState(false);
-  const [countdown, setCountdown] = useState(0);
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -29,27 +26,36 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSendOtp = () => {
-    if (!validateForm()) return;
-    setIsOtpSent(true);
-    setCountdown(30);
-    const timer = setInterval(() => {
-      setCountdown(prev => (prev <= 1 ? (clearInterval(timer), 0) : prev - 1));
-    }, 1000);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateForm() || !isOtpSent) return;
+    if (!validateForm()) return;
 
-    const userData = {
+    // Get users array from localStorage or initialize empty
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Check if email already exists
+    const emailExists = users.some(user => user.email === email);
+    if (emailExists) {
+      setErrors({ ...errors, email: 'An account with this email already exists.' });
+      return;
+    }
+
+    const newUser = {
       name,
       email,
       mobile,
       password: btoa(password),
+      token: 'dummy-token-123456', // dummy token for authentication
       timestamp: new Date().getTime()
     };
-    localStorage.setItem('user', JSON.stringify(userData));
+
+    // Add new user to users array
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Set current logged-in user email
+    localStorage.setItem('currentUserEmail', email);
+
     setSuccess(true);
   };
 
@@ -90,9 +96,10 @@ const Register = () => {
                   placeholder="Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="form-input"
+                  className={`form-input ${errors.email ? 'input-error' : ''}`}
                 />
               </div>
+              {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
 
             <div className="form-group">
@@ -137,31 +144,6 @@ const Register = () => {
               {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
             </div>
 
-            {isOtpSent && (
-              <div className="form-group">
-                <div className="input-group otp-group">
-                  <input
-                    type="text"
-                    placeholder="Enter OTP"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    className="form-input otp-input"
-                  />
-                  {countdown > 0 ? (
-                    <span className="otp-timer">Resend in {countdown}s</span>
-                  ) : (
-                    <button 
-                      type="button" 
-                      onClick={handleSendOtp}
-                      className="otp-resend"
-                    >
-                      Resend OTP
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-
             <div className="form-group agreement-group">
               <div className="agreement">
                 <input
@@ -179,22 +161,12 @@ const Register = () => {
             </div>
 
             <div className="form-group">
-              {!isOtpSent ? (
-                <button 
-                  type="button" 
-                  onClick={handleSendOtp} 
-                  className="btn btn-primary"
-                >
-                  Create Account
-                </button>
-              ) : (
-                <button 
-                  type="submit" 
-                  className="btn btn-primary"
-                >
-                  Register
-                </button>
-              )}
+              <button 
+                type="submit" 
+                className="btn btn-primary"
+              >
+                Register
+              </button>
             </div>
           </form>
         )}
@@ -206,7 +178,6 @@ const Register = () => {
     </div>
     <Footer/>
     </>
-
   );
 };
 

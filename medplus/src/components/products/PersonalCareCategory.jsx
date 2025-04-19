@@ -13,7 +13,7 @@ const PersonalCareCategory = () => {
   ];
 
   return (
-    <div className="category-container">
+    <div className="category-container personalcare-category">
       <div className="category-header">
         <MdHealthAndSafety className="category-main-icon" />
         <h2>Personal Care</h2>

@@ -13,7 +13,7 @@ const MedicineCategory = () => {
   ];
 
   return (
-    <div className="category-container">
+    <div className="category-container medicine-category">
       <div className="category-header">
         {/* <GiMedicinePills className="category-main-icon" /> */}
         <MdLocalPharmacy className="category-main-icon" />

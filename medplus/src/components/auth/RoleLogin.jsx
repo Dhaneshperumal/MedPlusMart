@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 import { MdHealthAndSafety } from 'react-icons/md';
 import "./Login.css"
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
 
-const AdminLogin = () => {
+const RoleLogin = () => {
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -21,13 +22,19 @@ const AdminLogin = () => {
     }
   };
 
+  // Determine forgot password link based on current path
+  let forgotPasswordLink = '/adminforgot';
+  if (location.pathname === '/pharmalogin') {
+    forgotPasswordLink = '/pharmaforgot';
+  }
+
   return (
     <>
       {/* <Header/> */}
       <div className="login-container">
         <div className="login-card">
           <div className="card-header">
-            <h1 className="text-xl font-bold">Admin Login</h1>
+            <h1 className="text-xl font-bold">Login</h1>
             <p className="text-blue-100">Please log in to continue</p>
           </div>
 
@@ -77,7 +84,7 @@ const AdminLogin = () => {
                       Remember me
                     </label>
                   </div>
-                  <Link to="/adminforgot" style={{ color: 'blue' }} className="text-sm hover:underline">
+                  <Link to={forgotPasswordLink} style={{ color: 'blue' }} className="text-sm hover:underline">
                     Forgot password?
                   </Link>
                 </div>
@@ -105,4 +112,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default RoleLogin;

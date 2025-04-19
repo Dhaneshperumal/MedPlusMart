@@ -1,29 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { getToken, logout } from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
 
 const ProfilePage = () => {
+  const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
-  const [contact, setContact] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
   const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const loadUserData = () => {
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const userData = users.find(user => user.email === currentUserEmail) || {};
+    setName(userData.name || '');
+    setAddress(userData.address || '');
+    setEmail(userData.email || '');
+    setMobile(userData.mobile || '');
+    if (userData.profilePicture) {
+      setPreview(userData.profilePicture);
+    } else {
+      setPreview(null);
+    }
+  };
 
   useEffect(() => {
-    const token = getToken();
-    if (token) {
-      const userData = JSON.parse(localStorage.getItem('user')) || {};
-      setName(userData.name || '');
-      setAddress(userData.address || '');
-      setContact(userData.contact || '');
-      if (userData.profilePicture) {
-        setPreview(userData.profilePicture);
-      }
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
+    if (currentUserEmail) {
+      loadUserData();
     }
+    const handleStorageChange = (event) => {
+      if (event.key === 'users' || event.key === 'currentUserEmail') {
+        loadUserData();
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   const handlePictureChange = (e) => {
+    if (!isEditing) return;
     const file = e.target.files[0];
     if (file) {
       setProfilePicture(file);
@@ -33,17 +56,38 @@ const ProfilePage = () => {
 
   const handleSave = () => {
     // Save changes to localStorage
-    const userData = JSON.parse(localStorage.getItem('user')) || {};
-    const updatedUser = {
-      ...userData,
-      name,
-      address,
-      contact,
-      profilePicture: preview
-    };
-    localStorage.setItem('user', JSON.stringify(updatedUser));
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const updatedUsers = users.map(user => {
+      if (user.email === currentUserEmail) {
+        return {
+          ...user,
+          name,
+          address,
+          email,
+          mobile,
+          profilePicture: preview || user.profilePicture
+        };
+      }
+      return user;
+    });
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    // If email changed, update currentUserEmail key
+    if (email !== currentUserEmail) {
+      localStorage.setItem('currentUserEmail', email);
+    }
     setMessage('Profile updated successfully!');
+    setIsEditing(false);
     setTimeout(() => setMessage(''), 3000);
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -65,7 +109,11 @@ const ProfilePage = () => {
             )}
           </div>
           <div className="picture-upload">
-            <label htmlFor="profile-picture" className="upload-label">
+            <label
+              htmlFor="profile-picture"
+              className={`upload-label ${isEditing ? '' : 'disabled'}`}
+              style={{ cursor: isEditing ? 'pointer' : 'default' }}
+            >
               Change Photo
             </label>
             <input
@@ -73,7 +121,9 @@ const ProfilePage = () => {
               type="file"
               accept="image/*"
               onChange={handlePictureChange}
-              className="upload-input"
+              className={`upload-input ${isEditing ? '' : 'disabled'}`}
+              disabled={!isEditing}
+              style={{ display: 'none' }}
             />
           </div>
         </div>
@@ -90,6 +140,7 @@ const ProfilePage = () => {
               onChange={(e) => setName(e.target.value)}
               className="form-input"
               placeholder="Enter your full name"
+              disabled={!isEditing}
             />
           </div>
 
@@ -104,20 +155,37 @@ const ProfilePage = () => {
               onChange={(e) => setAddress(e.target.value)}
               className="form-input"
               placeholder="Enter your address"
+              disabled={!isEditing}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="contact" className="form-label">
-              Contact Number
+            <label htmlFor="email" className="form-label">
+              Email Address
             </label>
             <input
-              id="contact"
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-input"
+              placeholder="Enter your email address"
+              disabled={!isEditing}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="mobile" className="form-label">
+              Mobile Number
+            </label>
+            <input
+              id="mobile"
               type="tel"
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
               className="form-input "
               placeholder="Enter your phone number"
+              disabled={!isEditing}
             />
           </div>
 
@@ -140,28 +208,34 @@ const ProfilePage = () => {
           )}
 
           <div className="form-actions">
+            {!isEditing ? (
+              <button
+                type="button"
+                onClick={handleEditClick}
+                className="btn btn-edit"
+              >
+                Edit
+              </button>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  className="btn btn-save"
+                >
+                  Save Changes
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsEditing(false)}
+                  className="btn btn-cancel"
+                >
+                  Cancel
+                </button>
+              </>
+            )}
             <button
-              type="button"
-              onClick={handleSave}
-              className="btn btn-save"
-            >
-              Save Changes
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setName('');
-                setAddress('');
-                setContact('');
-                setProfilePicture(null);
-                setPreview(null);
-              }}
-              className="btn btn-cancel"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={logout}
+              onClick={handleLogout}
               className="btn btn-logout"
             >
               Logout

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-//import { login } from '../../services/auth';
 import { FaUser, FaLock, FaMobileAlt, FaEnvelope } from 'react-icons/fa';
 import { MdOutlineSms } from 'react-icons/md';
 import { MdHealthAndSafety } from 'react-icons/md';
 import "./Login.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,11 +16,12 @@ const Login = () => {
   const [otp, setOtp] = useState('');
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [countdown, setCountdown] = useState(0);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSendOtp = () => {
     if (!mobile) return;
     
-   
     console.log('OTP sent to:', mobile);
     setIsOtpSent(true);
     setCountdown(30);
@@ -37,15 +38,28 @@ const Login = () => {
     }, 1000);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      
-      window.location.href = '/';
-    } catch (error) {
-      console.error('Login error:', error);
-    
-      alert(error.message || 'Login failed. Please try again.');
+    setError('');
+    if (!isOtpLogin) {
+      // Email/password login
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const user = users.find(u => u.email === email);
+      if (!user) {
+        setError('No account found with this email.');
+        return;
+      }
+      if (user.password !== btoa(password)) {
+        setError('Incorrect password.');
+        return;
+      }
+      // Set current logged-in user email
+      localStorage.setItem('currentUserEmail', email);
+      // Redirect to home or profile page
+      navigate('/');
+    } else {
+      // OTP login logic (not implemented)
+      alert('OTP login not implemented yet.');
     }
   };
 
@@ -56,13 +70,12 @@ const Login = () => {
       <div className="login-card">
       
         <div className="card-header">
-      <div className="icons-container">
-       
-         <MdHealthAndSafety style={{ color: 'white', fontSize: '35px' }} className="category-icons" /> 
-      </div>
-      <h1 className="text-xl font-bold">Welcome to MedPlusMart</h1>
-      <p className="text-blue-100">Please log in to continue</p>
-    </div>
+          <div className="icons-container">
+            <MdHealthAndSafety style={{ color: 'white', fontSize: '35px' }} className="category-icons" /> 
+          </div>
+          <h1 className="text-xl font-bold">Welcome to MedPlusMart</h1>
+          <p className="text-blue-100">Please log in to continue</p>
+        </div>
 
         <div className="card-body">
         
@@ -72,21 +85,19 @@ const Login = () => {
               className={`tab-btn ${!isOtpLogin ? 'active' : ''}`}
             >
               <FaEnvelope className="inline mr-2" />
-            
             </button>
             <button
               onClick={() => setIsOtpLogin(true)}
               className={`tab-btn ${isOtpLogin ? 'active' : ''}`}
             >
               <MdOutlineSms className="inline mr-2" />
-              
             </button>
           </div>
 
           {!isOtpLogin ? (
            
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <div className="input-group">
                   <div className="input-icon">
                     <FaEnvelope />
@@ -116,6 +127,8 @@ const Login = () => {
                     className="form-control"
                   />
                 </div>
+
+                {error && <div className="error-message">{error}</div>}
 
                 <div className="remember-forgot">
                   <div className="flex items-center">
@@ -197,23 +210,16 @@ const Login = () => {
             </form>
           )}
 
-          {/* Divider */}
-          {/* <div className="divider">
-            <span className="divider-text">or</span>
-          </div> */}
-
-
           <div className="text-center">
             <p className="text-sm text-gray-600">
              <span style={{color:'black'}}> New to MedPlusMart?</span>{' '}
-              <a href="/register" style={{ color: 'blue' }} className="text-sm hover:underline">
+              <Link to="/register" style={{ color: 'blue' }} className="text-sm hover:underline">
                 New User? Register Now
-              </a>
+              </Link>
             </p>
           </div>
         </div>
 
-        {/* Footer Links */}
         <div className="card-footer">
           <div className="footer-links">
             <a href="#" className="footer-link">Terms of Service</a>

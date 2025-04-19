@@ -181,6 +181,9 @@ useEffect(() => {
               <p>Your Trusted E-Pharmacy – MedPlusMart</p>
               <button className="cta-button">Shop Now</button>
             </div>
+            <div className="hero-image-column">
+              <img src="./banner3.avif" alt="Hero Right Side" className="hero-image" />
+            </div>
           </section>
 
           {/* Categories Section */}
@@ -209,29 +212,29 @@ useEffect(() => {
           </section>
 
           {/* Offers Section */}
-<section className="offers-section">
-  <div className="section-container">
-    <h2>Special Offers</h2>
-    <div className="offer-carousel-container">
-      <button className="carousel-button prev" onClick={prevOffer}>
-        <FaChevronLeft />
-      </button>
-      
-      <div className="offer-carousel">
-        {offers.map((offer, index) => (
-          <div 
-            key={offer.id} 
-            className={`offer-card ${index === currentOfferIndex ? 'active' : ''}`}
-          >
-            <div className="offer-image-container">
-              <img src={offer.image} alt={offer.title} />
-            </div>
-            <h3 >{offer.title}</h3>
-            <p>{offer.description}</p>
-            <button className="offer-button">Claim Offer</button>
-          </div>
-        ))}
-      </div>
+          <section className="offers-section">
+            <div className="section-container">
+              <h2>Special Offers</h2>
+              <div className="offer-carousel-container">
+                <button className="carousel-button prev" onClick={prevOffer}>
+                  <FaChevronLeft />
+                </button>
+                
+                <div className="offer-carousel">
+                  {offers.map((offer, index) => (
+                    <div 
+                      key={offer.id} 
+                      className={`offer-card ${index === currentOfferIndex ? 'active' : ''}`}
+                    >
+                      <div className="offer-image-container">
+                        <img src={offer.image} alt={offer.title} />
+                      </div>
+                      <h3 >{offer.title}</h3>
+                      <p>{offer.description}</p>
+                      <button className="offer-button">Claim Offer</button>
+                    </div>
+                  ))}
+                </div>
       
       <button className="carousel-button next" onClick={nextOffer}>
         <FaChevronRight />

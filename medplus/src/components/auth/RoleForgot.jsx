@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { FaEnvelope, FaArrowLeft } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 import './ForgotPassword.css';
 
-const AdminForgot = () => {
+const RoleForgot = () => {
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +26,12 @@ const AdminForgot = () => {
       setIsSubmitted(true);
     }, 1500);
   };
+
+  // Determine back to login link based on current path
+  let backToLoginLink = '/adminlogin';
+  if (location.pathname === '/pharmaforgot') {
+    backToLoginLink = '/pharmalogin';
+  }
 
   return (
     <div className="forgot-password-container">
@@ -71,7 +79,7 @@ const AdminForgot = () => {
         )}
 
         <div className="back-to-login">
-          <a href="/pharmacistlogin">
+          <a href={backToLoginLink}>
             <FaArrowLeft /> Back to Login
           </a>
         </div>
@@ -80,4 +88,4 @@ const AdminForgot = () => {
   );
 };
 
-export default AdminForgot;
+export default RoleForgot;

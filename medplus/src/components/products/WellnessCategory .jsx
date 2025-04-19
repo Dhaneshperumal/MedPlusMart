@@ -13,7 +13,7 @@ const WellnessCategory = () => {
   ];
 
   return (
-    <div className="category-container">
+    <div className="category-container wellness-category">
       <div className="category-header">
         <GiMedicines className="category-main-icon" />
         <h2>Wellness</h2>
