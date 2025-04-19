@@ -6,7 +6,7 @@ const Header = ({ isLoggedIn }) => {
   return (
     <header className="header">
       <div className="header-container">
-        <div className="logo">MedPlusMart</div>
+        <div className="logo"><a href="/">MedPlusMart</a></div>
         
         
         

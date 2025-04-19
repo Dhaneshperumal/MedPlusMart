@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getToken, logout } from '../../services/auth';
+import {logout } from '../../services/auth';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
 
@@ -130,7 +130,8 @@ const ProfilePage = () => {
 
         <form className="profile-form">
           <div className="form-group">
-            <label htmlFor="name" className="form-label">
+            
+            <label htmlFor="name" className="form-label">      
               Full Name
             </label>
             <input

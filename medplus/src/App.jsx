@@ -14,6 +14,8 @@ import PersonalCareCategory from './components/products/PersonalCareCategory';
 import WellnessCategory from './components/products/WellnessCategory ';
 import RoleLogin from './components/auth/rolelogin';
 import RoleForgot from './components/auth/RoleForgot';
+import PharmacistDashboard from './components/pages/PharmacistDashboard';
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const userData = localStorage.getItem('user') || sessionStorage.getItem('user');

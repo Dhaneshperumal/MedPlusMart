@@ -52,6 +52,7 @@
 }
 
 /* Input Styles */
+/* Input Styles */
 .input-group {
   position: relative;
   display: flex;
@@ -60,6 +61,7 @@
 
 .input-group input{
   padding-left: 2.5rem;
+  width: 100%;
 }
 
 .input-icon {
@@ -67,19 +69,26 @@
   left: 1rem;
   color: #94a3b8;
   font-size: 1rem;
-  
-  
+  z-index: 2; /* Ensure icon stays above input */
 }
 
 .form-input {
   width: 100%;
-  padding: 1.5rem  ;
+  padding: 0.75rem 1rem 0.75rem 2.5rem; /* More padding on left for icon */
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   font-size: 0.9rem;
   transition: all 0.2s;
-  
-  
+  position: relative;
+}
+
+/* Placeholder styling */
+.form-input::placeholder {
+  color: #94a3b8;
+  opacity: 1; /* Firefox reduces opacity by default */
+  position: relative;
+  margin-left: 20px;
+  left: 2; /* Adjust if needed */
 }
 
 .form-input:focus {
